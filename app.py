@@ -37,7 +37,7 @@ def login():
             flash("Invalid username or password", "danger")
     return render_template("login.html")
 
-@app.route("/dashboard")
+@app.route("/dashboard", methods =["GET", "POST"])
 def dashboard():
     return "<h1>You have successfully logged in</h1>"
 
