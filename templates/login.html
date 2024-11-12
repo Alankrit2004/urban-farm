@@ -37,7 +37,7 @@
             max-width: 400px;
         }
 
-        .form-box input[type="number"],
+        .form-box input[type="tel"],
         .form-box input[type="password"] {
             width: 100%;
             padding: 10px;
@@ -60,6 +60,23 @@
         .form-box input[type="submit"]:hover {
             background-color: #555;
         }
+
+        .flashes {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .flashes li {
+            margin: 5px 0;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .danger {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -67,11 +84,21 @@
     <div class="form-container">
         <div class="form-box">
             <h2>Login</h2>
-            <form action="/dashboard" method="POST">
-                <input type="number" name="username" placeholder="Mobile Number" required>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <form action="/" method="POST">
+                <input type="tel" name="mobile_number" placeholder="Mobile Number" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="submit" value="Submit">
             </form>
+            <p>Don't have an account? <a href="/register"><strong>Sign up</strong></a></p>
         </div>
     </div>
 </body>
