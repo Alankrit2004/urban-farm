@@ -63,6 +63,8 @@ def register():
 
     return render_template("register.html")
 
+#dashboard route
+
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
     return "<h1>You have successfully logged in</h1>"
